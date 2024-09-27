@@ -3,6 +3,7 @@ import sqlite3
 import string
 import random
 
+domain = "" #본인의 도메인
 app = Flask(__name__)
 
 def init_db():
@@ -239,7 +240,7 @@ def redirect_to_original(short_url):
 def shorten_url():
     original_url = request.json.get('url')
     short_url = store_url(original_url)
-    return jsonify({"short_url": f"http://localhost:5000/{short_url}"})
+    return jsonify({"short_url": f"{domain}/{short_url}"})
 
 if __name__ == '__main__':
     init_db()
